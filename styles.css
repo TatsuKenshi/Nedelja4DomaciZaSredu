@@ -1,0 +1,87 @@
+/* glavni div */
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+/* pokemon */
+
+.pokemonDiv {
+  width: 50vw;
+  height: inherit;
+  background: lightskyblue;
+}
+
+.dugmePokemon {
+  width: inherit;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.birajPokemona {
+  width: inherit;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statistikePokemona {
+  width: inherit;
+  height: 50%;
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* protivnik */
+
+.protivnikDiv {
+  width: 50vw;
+  height: inherit;
+  background: indianred;
+}
+
+.dugmeProtivnik {
+  width: inherit;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.birajProtivnika {
+  width: inherit;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statistikeProtivnika {
+  width: inherit;
+  height: 50%;
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* startni dugmici */
+
+.prikaziPokemone {
+  font-size: large;
+}
+
+.prikaziProtivnike {
+  font-size: large;
+}
+
+/* izaberi mene dugmici */
+
+.izaberiMene {
+  font-size: large;
+}
