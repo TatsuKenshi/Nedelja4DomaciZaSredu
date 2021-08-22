@@ -1,10 +1,10 @@
-// lista pokemona
-
 let bulbasaur = {
   ime: "Bulbasaur",
   vrsta: "Grass",
+  boja: "paleTurquoise",
   sposobnosti: ["Overgrow", "Chlorophyll"],
   karakteristike: {
+    hp: 45,
     napad: 49,
     odbrana: 49,
     brzina: 45,
@@ -14,8 +14,10 @@ let bulbasaur = {
 let charizard = {
   ime: "Charizard",
   vrsta: "Fire",
+  boja: "aquamarine",
   sposobnosti: ["Blaze", "Solar Power"],
   karakteristike: {
+    hp: 78,
     napad: 84,
     odbrana: 78,
     brzina: 100,
@@ -25,8 +27,10 @@ let charizard = {
 let pikachu = {
   ime: "Pikachu",
   vrsta: "Electric",
+  boja: "lemonChiffon",
   sposobnosti: ["Static", "Lightning Rod"],
   karakteristike: {
+    hp: 35,
     napad: 55,
     odbrana: 40,
     brzina: 90,
@@ -36,8 +40,10 @@ let pikachu = {
 let gyarados = {
   ime: "Gyarados",
   vrsta: "Water",
+  boja: "lightGrey",
   sposobnosti: ["Intimidate", "Moxie"],
   karakteristike: {
+    hp: 95,
     napad: 125,
     odbrana: 79,
     brzina: 81,
@@ -47,143 +53,88 @@ let gyarados = {
 let eevee = {
   ime: "Eevee",
   vrsta: "Normal",
+  boja: "lightPink",
   sposobnosti: ["Run Away", "Adaptability", "Anticipation"],
   karakteristike: {
+    hp: 55,
     napad: 55,
     odbrana: 50,
     brzina: 55,
   },
 };
 let pokemoni = [bulbasaur, charizard, pikachu, gyarados, eevee];
-console.log(pokemoni);
 
-// Izbor pokemona i protivnika
+// main player buttons
+const mainPlayerButton1 = document.querySelector(".display-player1");
+const mainPlayerButton2 = document.querySelector(".display-player2");
 
-// kontejner div-ovi
+// list pokemon divs
+const listAllPlayer1 = document.querySelector(".player1-list");
+const listAllPlayer2 = document.querySelector(".player2-list");
 
-// pokemoni
+// stat display divs
+const statsPlayer1 = document.querySelector(".player1-overview");
+const statsPlayer2 = document.querySelector(".player2-overview");
 
-const mainDiv = document.createElement("div");
-mainDiv.classList.add("main");
+// ready button divs
+readyPlayer1 = document.querySelector(".player1-ready");
+readyPlayer2 = document.querySelector(".player2-ready");
 
-const pokemonDiv = document.createElement("div");
-pokemonDiv.classList.add("pokemonDiv");
+// start divs
+const startPlayer1 = document.querySelector(".start1");
+const startPlayer2 = document.querySelector(".start2");
 
-const dugmePokemonDiv = document.createElement("div");
-dugmePokemonDiv.classList.add("dugmePokemon");
-
-const birajPokemona = document.createElement("div");
-birajPokemona.classList.add("birajPokemona");
-
-const statistikePokemona = document.createElement("div");
-statistikePokemona.classList.add("statistikePokemona");
-
-pokemonDiv.append(dugmePokemonDiv, birajPokemona, statistikePokemona);
-
-// protivnici
-
-const protivnikDiv = document.createElement("div");
-protivnikDiv.classList.add("protivnikDiv");
-
-const dugmeProtivnikDiv = document.createElement("div");
-dugmeProtivnikDiv.classList.add("dugmeProtivnik");
-
-const birajProtivnika = document.createElement("div");
-birajProtivnika.classList.add("birajProtivnika");
-
-const statistikeProtivnika = document.createElement("div");
-statistikeProtivnika.classList.add("statistikeProtivnika");
-
-protivnikDiv.append(dugmeProtivnikDiv, birajProtivnika, statistikeProtivnika);
-
-mainDiv.append(pokemonDiv, protivnikDiv);
-
-document.body.prepend(mainDiv);
-
-// startni dugmici
-
-const prikaziPokemoneDugme = document.createElement("button");
-prikaziPokemoneDugme.classList.add("prikaziPokemone");
-prikaziPokemoneDugme.textContent = "Prikazi Pokemone";
-dugmePokemonDiv.append(prikaziPokemoneDugme);
-
-const prikaziProtivnikeDugme = document.createElement("button");
-prikaziProtivnikeDugme.classList.add("prikaziProtivnike");
-prikaziProtivnikeDugme.textContent = "Prikazi Protivnike";
-dugmeProtivnikDiv.append(prikaziProtivnikeDugme);
-
-// event listeneri
-
-// pokemoni
-
-prikaziPokemoneDugme.addEventListener("click", function () {
-  pokemoni.forEach(function (element, index) {
-    const izaberiMene = document.createElement("button");
-    izaberiMene.classList.add("izaberiMene");
-    izaberiMene.textContent = element.ime;
-    birajPokemona.append(izaberiMene);
-    izaberiMene.addEventListener("click", function (e) {
-      const imePokemona = document.createElement("p");
-      imePokemona.textContent = `Ime: ${element.ime}`;
-
-      const listaSposobnostiPokemona = document.createElement("p");
-      listaSposobnostiPokemona.textContent = `Sposobnosti: ${element.sposobnosti.join(
-        ", "
-      )}`;
-
-      const napadPokemona = document.createElement("p");
-      napadPokemona.textContent = `Napad: ${element.karakteristike.napad}`;
-
-      const odbranaPokemona = document.createElement("p");
-      odbranaPokemona.textContent = `Odbrana: ${element.karakteristike.odbrana}`;
-
-      const brzinaPokemona = document.createElement("p");
-      brzinaPokemona.textContent = `Brzina: ${element.karakteristike.brzina}`;
-
-      statistikePokemona.append(
-        imePokemona,
-        listaSposobnostiPokemona,
-        napadPokemona,
-        odbranaPokemona,
-        brzinaPokemona
-      );
+function showAll(
+  playerButton,
+  pokemons,
+  listAll,
+  statDiv,
+  playerReady,
+  startDiv
+) {
+  // all single Pokemon Buttons
+  let allSingleButtons = [];
+  playerButton.addEventListener("click", function (e) {
+    playerButton.disabled = true;
+    pokemons.forEach(function (pokemon) {
+      let singleButton = document.createElement("button");
+      singleButton.classList.add("single-button");
+      singleButton.textContent = pokemon.ime;
+      listAll.append(singleButton);
+      allSingleButtons.push(singleButton);
+      singleButton.addEventListener("click", function (e) {
+        allSingleButtons.forEach(function (oneButton) {
+          oneButton.style.backgroundColor = "white";
+        });
+        singleButton.style.backgroundColor = "yellow";
+        startDiv.style.backgroundColor = pokemon.boja;
+        statDiv.innerHTML = `
+        <p>Health Points: ${pokemon.karakteristike.hp}</p>
+        <p>Attack Rating: ${pokemon.karakteristike.napad}</p>
+        <p>Defense Rating: ${pokemon.karakteristike.odbrana}</p>
+        <p>Speed Rating: ${pokemon.karakteristike.brzina}</p>
+        <p>Special Abilities: ${pokemon.sposobnosti.join(", ")}</p>
+        `;
+        playerReady.innerHTML = `
+        <button class="ready">Ready to Battle!</button>
+        `;
+      });
     });
   });
-});
-
-// protivnici
-
-prikaziProtivnikeDugme.addEventListener("click", function () {
-  pokemoni.forEach(function (element, index) {
-    const izaberiMene = document.createElement("button");
-    izaberiMene.classList.add("izaberiMene");
-    izaberiMene.textContent = element.ime;
-    birajProtivnika.append(izaberiMene);
-    izaberiMene.addEventListener("click", function (e) {
-      const imeProtivnika = document.createElement("p");
-      imeProtivnika.textContent = `Ime: ${element.ime}`;
-
-      const listaSposobnostiProtivnika = document.createElement("p");
-      listaSposobnostiProtivnika.textContent = `sposobnosti: ${element.sposobnosti.join(
-        ", "
-      )}`;
-
-      const napadProtivnika = document.createElement("p");
-      napadProtivnika.textContent = `Napad: ${element.karakteristike.napad}`;
-
-      const odbranaProtivnika = document.createElement("p");
-      odbranaProtivnika.textContent = `Odbrana: ${element.karakteristike.odbrana}`;
-
-      const brzinaProtivnika = document.createElement("p");
-      brzinaProtivnika.textContent = `Brzina: ${element.karakteristike.brzina}`;
-
-      statistikeProtivnika.append(
-        imeProtivnika,
-        listaSposobnostiProtivnika,
-        napadProtivnika,
-        odbranaProtivnika,
-        brzinaProtivnika
-      );
-    });
-  });
-});
+}
+showAll(
+  mainPlayerButton1,
+  pokemoni,
+  listAllPlayer1,
+  statsPlayer1,
+  readyPlayer1,
+  startPlayer1
+);
+showAll(
+  mainPlayerButton2,
+  pokemoni,
+  listAllPlayer2,
+  statsPlayer2,
+  readyPlayer2,
+  startPlayer2
+);

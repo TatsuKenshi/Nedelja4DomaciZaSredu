@@ -1,87 +1,35 @@
-/* glavni div */
+* {
+  margin: 0;
+  padding: 0;
+}
 
 .main {
-  width: 100vw;
-  height: 100vh;
   display: flex;
+  text-align: center;
 }
-
-/* pokemon */
-
-.pokemonDiv {
-  width: 50vw;
-  height: inherit;
+.start1 {
+  width: 50%;
   background: lightskyblue;
-}
-
-.dugmePokemon {
-  width: inherit;
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.birajPokemona {
-  width: inherit;
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.statistikePokemona {
-  width: inherit;
-  height: 50%;
   display: block;
-  text-align: center;
-  font-size: 1.5rem;
+  padding: 5px;
 }
-
-/* protivnik */
-
-.protivnikDiv {
-  width: 50vw;
-  height: inherit;
+.start2 {
+  width: 50%;
   background: indianred;
-}
-
-.dugmeProtivnik {
-  width: inherit;
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.birajProtivnika {
-  width: inherit;
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.statistikeProtivnika {
-  width: inherit;
-  height: 50%;
   display: block;
-  text-align: center;
-  font-size: 1.5rem;
+  padding: 5px;
 }
-
-/* startni dugmici */
-
-.prikaziPokemone {
-  font-size: large;
+.display {
+  margin: 5px;
+  padding: 2px;
 }
-
-.prikaziProtivnike {
-  font-size: large;
+.player1-list {
+  padding: 10px;
 }
-
-/* izaberi mene dugmici */
-
-.izaberiMene {
-  font-size: large;
+.player2-list {
+  padding: 10px;
+}
+.single-button {
+  margin: 2px;
+  padding: 2px;
 }
